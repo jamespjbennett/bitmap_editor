@@ -13,4 +13,9 @@ class BitmapEditor
       end
     end
   end
+
+  def new_bitmap_image_command
+
+  end
+  
 end
