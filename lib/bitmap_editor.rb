@@ -6,6 +6,8 @@ class BitmapEditor
     File.open(file).each do |line|
       line = line.chomp
       case line
+      when new_bitmap_image_command
+          puts "new bitmap image command"
       when 'S'
           puts "There is no image"
       else
