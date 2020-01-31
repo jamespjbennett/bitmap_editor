@@ -6,8 +6,8 @@ RSpec.describe "BitmapEditor" do
     context 'valid regex' do
       it 'should correctly match against command for new bitmap image' do
         bitmap_editor = BitmapEditor.new
-        valid_input = "I 5 6"
-        expect(valid_input.match(bitmap_editor.new_bitmap_image_command)).not_to be_nil
+        valid_inputs = ["I 5 6", "i  56   200", "I 5 6  "]
+        valid_inputs.each{|input| expect(input.match(bitmap_editor.new_bitmap_image_command)).not_to be_nil}
       end
     end
     context 'invalid regex' do
