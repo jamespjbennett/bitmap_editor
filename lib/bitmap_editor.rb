@@ -15,7 +15,7 @@ class BitmapEditor
   end
 
   def new_bitmap_image_command
-
+    /[iI]\s+\d+\s+\d+/
   end
-  
+
 end
