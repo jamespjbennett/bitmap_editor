@@ -8,15 +8,15 @@ RSpec.describe "BitmapImage" do
 
   describe 'initialization' do
     it 'should initialize with a rows attribute' do
-      expect(@bitmap_image.rows).to eq(nil)
+      expect(@bitmap_image.instance_variable_get(:@row)).to eq(nil)
     end
 
     it 'should initialize with a columns attribute' do
-      expect(@bitmap_image.columns).to eq(nil)
+      expect(@bitmap_image.instance_variable_get(:@columns)).to eq(nil)
     end
 
     it 'should initialize with a grid attribute' do
-      expect(@bitmap_image.grid).to eq(nil)
+      expect(@bitmap_image.instance_variable_get(:@grid)).to eq(nil)
     end
   end
 

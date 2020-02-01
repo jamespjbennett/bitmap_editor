@@ -1,8 +1,8 @@
 class BitmapImage
 
-  attr_reader :rows
-
   def initialize
+    @rows = nil
+    @columns = nil
     @rows = nil
   end
 
