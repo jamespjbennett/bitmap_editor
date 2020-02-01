@@ -20,4 +20,16 @@ RSpec.describe "BitmapImage" do
     end
   end
 
+
+  describe 'grid generation' do
+    context 'valid command' do
+      it 'should successfully change the value of grid'
+      it 'should successfully change the value of rows'
+      it 'should successfully change the value of columns'
+      it 'should create a multidimensional array'
+      it 'should create the correct number of rows as specified by the command'
+      it 'should create the correct length of individual rows as specified by the command'
+    end
+  end
+
 end
