@@ -10,5 +10,6 @@ class BitmapImage
     int_values = command.scan(/\d+/).map(&:to_i)
     @rows = int_values[1]
     @columns = int_values[0]
+    @grid = Array.new(@rows) {Array.new(@columns) {'O'}}
   end
 end
