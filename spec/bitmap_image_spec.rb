@@ -37,7 +37,11 @@ RSpec.describe "BitmapImage" do
       it 'should successfully change the value of columns' do
         expect(@bitmap_image.instance_variable_get(:@columns)).not_to be_nil
       end
-      it 'should create a multidimensional array'
+      it 'should create a multidimensional array' do
+        grid = @bitmap_image.instance_variable_get(:@grid)
+        expect(grid.class).to eq(Array)
+        expect(grid.map(&:class).uniq).to eq([Array])
+      end
       it 'should create the correct number of rows as specified by the command'
       it 'should create the correct length of individual rows as specified by the command'
     end
