@@ -2,6 +2,7 @@ require_relative '../lib/bitmap_editor'
 
 RSpec.describe "BitmapEditor" do
 
+
   describe 'new bitmap image regex matches' do
     context 'valid regex' do
       it 'should correctly match against command for new bitmap image' do
@@ -17,13 +18,13 @@ RSpec.describe "BitmapEditor" do
         invalid_inputs.each{|input| expect(input.match(bitmap_editor.new_bitmap_image_command)).to be_nil}
       end
     end
-
-    it 'should correctly match against command for single dot on bitmap image'
-    it 'should correctly match against command for vertical line on bitmap image'
-    it 'should correctly match against command for horizontal line on bitmap image'
-    it 'should correctly match against command for showing bitmap image'
-    it 'should correctly match against command for clearing bitmap image'
-
   end
+
+  it 'should correctly match against command for single dot on bitmap image'
+  it 'should correctly match against command for vertical line on bitmap image'
+  it 'should correctly match against command for horizontal line on bitmap image'
+  it 'should correctly match against command for showing bitmap image'
+  it 'should correctly match against command for clearing bitmap image'
+
 
 end
