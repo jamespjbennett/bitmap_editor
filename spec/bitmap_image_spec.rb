@@ -2,10 +2,13 @@ require_relative '../lib/bitmap_image'
 
 RSpec.describe "BitmapImage" do
 
+  before(:each) do
+    @bitmap_image = BitmapImage.new
+  end
+
   describe 'initialization' do
     it 'should initialize with a rows attribute' do
-      bitmap_image = BitmapImage.new
-      expect(bitmap_image.rows).not_to raise_error
+      expect(@bitmap_image.rows).to eq(nil)
     end
     it 'should initialize with a columns attribute'
     it 'should initialize with a grid attribute'
