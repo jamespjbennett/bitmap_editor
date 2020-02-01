@@ -6,4 +6,7 @@ class BitmapImage
     @rows = nil
   end
 
+  def generate_grid(command)
+
+  end
 end
