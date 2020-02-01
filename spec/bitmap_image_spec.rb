@@ -56,11 +56,12 @@ RSpec.describe "BitmapImage" do
     context 'invalid command' do
       before(:each) do
         @bitmap_image = BitmapImage.new
-        @bitmap_image.generate_grid("I 251 500")
+        @bitmap_image.generate_grid("I 251 251")
         @grid = @bitmap_image.instance_variable_get(:@grid)
       end
 
       it 'should not populate the grid intance variable' do
+        expect(@grid).to eq(nil)
       end
     end
   end
