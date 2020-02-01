@@ -22,8 +22,15 @@ RSpec.describe "BitmapImage" do
 
 
   describe 'grid generation' do
+    before(:each) do
+      @bitmap_image = BitmapImage.new
+      @bitmap_image.generate_grid("I 5 6")
+    end
+
     context 'valid command' do
-      it 'should successfully change the value of grid'
+      it 'should successfully change the value of grid' do
+        expect(@bitmap_image.grid).not_to be_nil
+      end
       it 'should successfully change the value of rows'
       it 'should successfully change the value of columns'
       it 'should create a multidimensional array'
