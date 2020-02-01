@@ -22,13 +22,13 @@ RSpec.describe "BitmapImage" do
 
 
   describe 'grid generation' do
-    before(:each) do
-      @bitmap_image = BitmapImage.new
-      @bitmap_image.generate_grid("I 5 6")
-      @grid = @bitmap_image.instance_variable_get(:@grid)
-    end
-
     context 'valid command' do
+      before(:each) do
+        @bitmap_image = BitmapImage.new
+        @bitmap_image.generate_grid("I 5 6")
+        @grid = @bitmap_image.instance_variable_get(:@grid)
+      end
+
       it 'should successfully change the value of grid' do
         expect(@grid).not_to be_nil
       end
@@ -48,11 +48,20 @@ RSpec.describe "BitmapImage" do
       it 'should create the correct length of individual rows as specified by the command' do
         expect(@grid.map(&:length).uniq).to eq([5])
       end
-
       it 'should initialize all values as "O"' do
         expect(@grid.flatten.uniq).to eq(["O"])
       end
+    end
 
+    context 'invalid command' do
+      before(:each) do
+        @bitmap_image = BitmapImage.new
+        @bitmap_image.generate_grid("I 251 500")
+        @grid = @bitmap_image.instance_variable_get(:@grid)
+      end
+
+      it 'should not populate the grid intance variable' do
+      end
     end
   end
 
