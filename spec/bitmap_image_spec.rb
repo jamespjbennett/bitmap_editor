@@ -48,6 +48,11 @@ RSpec.describe "BitmapImage" do
       it 'should create the correct length of individual rows as specified by the command' do
         expect(@grid.map(&:length).uniq).to eq([5])
       end
+
+      it 'should initialize all values as "O"' do
+        expect(@grid.flatten.uniq).to eq(["O"])
+      end
+
     end
   end
 
