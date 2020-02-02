@@ -67,9 +67,21 @@ RSpec.describe "BitmapImage" do
   end
 
   describe 'new colour dot' do
+    before(:each) do
+      @bitmap_image = BitmapImage.new
+      @bitmap_image.generate_grid("I 5 6")
+    end
+
     context 'valid command' do
-      it 'should successfully change the value of the specified coordinate to the specified colour'
-      
+      it 'should successfully change the value of the specified coordinate to the specified colour' do
+        @bitmap_image.colour_single_pixel("L 1 3 A")        
+        grid = @bitmap_image.instance_variable_get(:@grid)
+        expect(grid[1][3]).to eq("A")
+      end
+
+    end
+    context 'invalid command' do
+      it 'should prevent coloring if the coordinates are out of bounds'
     end
   end
 end
