@@ -66,4 +66,10 @@ RSpec.describe "BitmapImage" do
     end
   end
 
+  describe 'new colour dot' do
+    context 'valid command' do
+      it 'should successfully change the value of the specified coordinate to the specified colour'
+      
+    end
+  end
 end
