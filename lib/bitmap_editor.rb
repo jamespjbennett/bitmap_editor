@@ -21,7 +21,7 @@ class BitmapEditor
   end
 
   def single_pixel_colour_command
-    /[lL]\s+\d+\s+\d+\s+[a-zA-Z]/
+    /[lL]\s+\d+\s+\d+\s+[a-zA-Z]\s*\z/
   end
 
 end
