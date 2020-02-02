@@ -23,9 +23,16 @@ RSpec.describe "BitmapEditor" do
 
   describe 'new single dot command regex matches' do
     context 'valid regex' do
-      it 'should correctly match against command for new bitmap image' do
+      it 'should correctly match against command for single dot colouring' do
         valid_inputs = ["L 1 3 A", "l  13   200 D", "L 1 3 A   "]
         valid_inputs.each{|input| expect(input.match(@bitmap_editor.single_pixel_colour_command)).not_to be_nil}
+      end
+    end
+
+    context 'invalid regex' do
+      it 'should not provide a match for invalid commands for single dot colouring ' do
+        invalid_inputs = ["l1 3 a", "L 1 3 A   5", "L 1 3 A5", "L A 1 3"]
+        invalid_inputs.each{|input| expect(input.match(@bitmap_editor.single_pixel_colour_command)).to be_nil}
       end
     end
   end
