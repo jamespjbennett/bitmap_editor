@@ -12,6 +12,7 @@ class BitmapEditor
     return puts "please provide correct file" if file.nil? || !File.exists?(file)
     File.open(file).each do |line|
       line = line.chomp
+      return puts 'No Grid created!' if line.match(image_action?) && !@grid
       case line
       when new_bitmap_image_command
         @grid = @bitmap_image.generate_grid(line)
@@ -29,6 +30,10 @@ class BitmapEditor
 
   def single_pixel_colour_command
     /[lL]\s+\d+\s+\d+\s+[a-zA-Z]\s*\z/
+  end
+
+  def image_action?
+    Regexp.union([single_pixel_colour_command])
   end
 
 end
