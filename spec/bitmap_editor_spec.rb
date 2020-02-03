@@ -38,7 +38,16 @@ RSpec.describe "BitmapEditor" do
       end
     end
   end
-  it 'should correctly match against command for vertical line on bitmap image'
+
+  it 'should correctly match against command for vertical line on bitmap image' do
+    context 'valid regex' do
+      it 'should correct match against command for vertical line colouring'
+    end
+    context 'invalid regex' do
+      it 'should not providde a match for invalid commands for vertical line colouring'
+    end
+  end
+
   it 'should correctly match against command for horizontal line on bitmap image'
   it 'should correctly match against command for showing bitmap image'
   it 'should correctly match against command for clearing bitmap image'
