@@ -12,7 +12,7 @@ class BitmapEditor
     return puts "please provide correct file" if file.nil? || !File.exists?(file)
     File.open(file).each do |line|
       line = line.chomp
-      return puts 'No Grid created!' if no_grid_created_when_required(line)
+      return puts 'No Grid created!' if grid_required_but_not_created(line)
       case line
       when new_bitmap_image_command
         @grid = @bitmap_image.generate_grid(line)
@@ -32,7 +32,7 @@ class BitmapEditor
     end
   end
 
-  def no_grid_created_when_required(line)
+  def grid_required_but_not_created(line)
     line.match(image_action?) && !@grid
   end
 
