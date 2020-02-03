@@ -53,11 +53,11 @@ class BitmapEditor
   end
 
   def show_image_command
-    /[sS]/
+    /[sS]\s*\z/
   end
 
   def clear_command
-    /[cC]/
+    /[cC]\s*\z/
   end
 
   def image_action?
