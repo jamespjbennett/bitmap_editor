@@ -96,7 +96,7 @@ RSpec.describe "BitmapEditor" do
         file = open_and_write_temp_file("i 5 6\nL 1 3 A")
         @bitmap_editor.run(file)
         grid = @bitmap_editor.instance_variable_get(:@grid)
-        expect(grid[0][2]).to eq("A")
+        expect(grid[2][0]).to eq("A")
         remove_temp_file(file)
       end
     end

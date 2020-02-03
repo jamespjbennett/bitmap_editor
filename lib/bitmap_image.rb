@@ -29,7 +29,9 @@ class BitmapImage
     x_coordinates_valid && y_coordinates_valid
   end
 
-  
+  def display_grid
+    @grid.each{|row| puts row.join(" ")}
+  end
 
   def colour_single_pixel(command)
     int_values = command_integer_values(command)
@@ -37,7 +39,7 @@ class BitmapImage
     y_axis_coordinate = int_values[1] - 1
     return puts "Coordinates out of bounds" if !within_bounds?([x_axis_coordinate], [y_axis_coordinate])
     colour = command_string_values(command).last
-    @grid[x_axis_coordinate][y_axis_coordinate] = colour
+    @grid[y_axis_coordinate][x_axis_coordinate] = colour
   end
 
   def draw_vertical_line(command)
