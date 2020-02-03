@@ -36,8 +36,12 @@ class BitmapEditor
     /[vV]\s+\d+\s+\d+\s+\d+\s+[a-zA-Z]\s*\z/
   end
 
+  def horizontal_line_command
+    /[hH]\s+\d+\s+\d+\s+\d+\s+[a-zA-Z]\s*\z/
+  end
+
   def image_action?
-    Regexp.union([single_pixel_colour_command, vertical_line_command])
+    Regexp.union([single_pixel_colour_command, vertical_line_command, horizontal_line_command])
   end
 
 end
