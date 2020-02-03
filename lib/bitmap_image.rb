@@ -14,6 +14,9 @@ class BitmapImage
     @grid = Array.new(@rows) {Array.new(@columns) {'O'}}
   end
 
+  def clear_grid
+    @grid = Array.new(@rows) {Array.new(@columns) {'O'}}
+  end
 
   def command_integer_values(command)
     command.scan(/\d+/).map(&:to_i)
