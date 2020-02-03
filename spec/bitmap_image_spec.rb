@@ -89,4 +89,19 @@ RSpec.describe "BitmapImage" do
       end
     end
   end
+
+  describe 'new vertical line' do
+    before(:each) do
+      @bitmap_image = BitmapImage.new
+      @bitmap_image.generate_grid("I 5 6")
+    end
+
+    context 'valid command' do
+      before(:each) do
+        @bitmap_image.draw_vertical_line("V 2 3 6 W")
+        grid = @bitmap_image.instance_variable_get(:@grid)
+      end
+
+    end
+  end
 end
