@@ -40,11 +40,21 @@ class BitmapImage
 
   def draw_vertical_line(command)
     int_values = command_integer_values(command)
-    x_axis_coordinate = int_values[0].to_i - 1
-    y_axis_coordinate_1 = int_values[1].to_i - 1
-    y_axis_coordinate_2 = int_values[2].to_i - 1
+    x_axis_coordinate = int_values[0] - 1
+    y_axis_coordinate_1 = int_values[1] - 1
+    y_axis_coordinate_2 = int_values[2] - 1
     return puts "Coordinates out of bounds" if !within_bounds?([x_axis_coordinate], [y_axis_coordinate_1, y_axis_coordinate_2])
     colour = command_string_values(command).last
     @grid[y_axis_coordinate_1..y_axis_coordinate_2].each{|row| row[x_axis_coordinate] = colour}
+  end
+
+  def draw_horizontal_line(command)
+    int_values = command_integer_values(command)
+    x_axis_coordinate_1 = int_values[0] - 1
+    x_axis_coordinate_2 = int_values[1] - 1
+    y_axis_coordinate = int_values[2] - 1
+    return puts "Coordinates out of bounds" if !within_bounds?([x_axis_coordinate_1, x_axis_coordinate_2], [y_axis_coordinate])
+    colour = command_string_values(command).last
+    (x_axis_coordinate_1..x_axis_coordinate_2).to_a.each{|coordinate| @grid[y_axis_coordinate][coordinate] = colour}
   end
 end
