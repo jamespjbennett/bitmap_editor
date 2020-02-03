@@ -66,6 +66,9 @@ RSpec.describe "BitmapEditor" do
       it 'should not attempt to execute actions on grid if it doesnt yet exist' do
         file = open_and_write_temp_file("L 1 3 A")
         expect { @bitmap_editor.run(file) }.to output("No Grid created!\n").to_stdout
+        expect { @bitmap_editor.run(file) }.not_to raise_error
+        remove_temp_file(file)
+
       end
     end
   end
