@@ -1,4 +1,6 @@
 require_relative '../lib/bitmap_editor'
+require 'tempfile'
+require 'pry'
 
 RSpec.describe "BitmapEditor" do
 
@@ -41,7 +43,16 @@ RSpec.describe "BitmapEditor" do
   it 'should correctly match against command for showing bitmap image'
   it 'should correctly match against command for clearing bitmap image'
 
-  describe 'running the file ' do
-    it 'should create a new bitmap image when the correct command is input'
+
+  describe 'running the file reader' do
+    it 'should create a new bitmap image when the correct command is input' do
+      file = Tempfile.new('test_instructions')
+      file.write("i 5 6")
+      file.read
+      @bitmap_editor.run(file)
+      expect(@bitmap_editor.instance_variable_get(:@grid)).not_to be_nil
+      file.close
+      file.unlink
+    end
   end
 end

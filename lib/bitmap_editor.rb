@@ -10,12 +10,11 @@ class BitmapEditor
 
   def run(file)
     return puts "please provide correct file" if file.nil? || !File.exists?(file)
-
     File.open(file).each do |line|
       line = line.chomp
       case line
       when new_bitmap_image_command
-        @bitmap_image.generate_grid(line)
+        @grid = @bitmap_image.generate_grid(line)
       when single_pixel_colour_command
         puts "single pixel colour command"
       else
