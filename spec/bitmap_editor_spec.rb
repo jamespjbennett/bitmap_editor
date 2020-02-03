@@ -39,9 +39,12 @@ RSpec.describe "BitmapEditor" do
     end
   end
 
-  it 'should correctly match against command for vertical line on bitmap image' do
+  describe 'new vertical line command regex matches' do
     context 'valid regex' do
-      it 'should correct match against command for vertical line colouring'
+      it 'should correctly match against command for vertical line colouring' do
+        valid_inputs = ["V 2 3 6 W", "v  13   200 4 D", "V 1 3 20 A   "]
+        valid_inputs.each{|input| expect(input.match(@bitmap_editor.vertical_line_command)).not_to be_nil}
+      end
     end
     context 'invalid regex' do
       it 'should not providde a match for invalid commands for vertical line colouring'
