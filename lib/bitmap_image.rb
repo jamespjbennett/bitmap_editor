@@ -35,4 +35,8 @@ class BitmapImage
     colour = command_string_values(command).last
     @grid[x_axis_coordinate][y_axis_coordinate] = colour
   end
+
+  def draw_vertical_line(command)
+    
+  end
 end
