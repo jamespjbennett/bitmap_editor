@@ -15,5 +15,5 @@
 
 # TODO 
 
-- refactor the bitmap image x-y coordinate translations from comman into own class to avoid repetition
+- refactor the bitmap image x-y coordinate translations from command into own class to avoid repetition
 
