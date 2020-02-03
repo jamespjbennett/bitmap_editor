@@ -54,14 +54,11 @@ RSpec.describe "BitmapEditor" do
       end
 
       it 'should create a new bitmap image when the correct set of commands are input' do
-        file = Tempfile.new('test_instructions')
-        file.write("i 5 6\nL 1 3 A")
-        file.read
+        file = open_and_write_temp_file("i 5 6\nL 1 3 A")
         @bitmap_editor.run(file)
         grid = @bitmap_editor.instance_variable_get(:@grid)
         expect(grid[0][2]).to eq("A")
-        file.close
-        file.unlink
+        remove_temp_file(file)
       end
     end
 
