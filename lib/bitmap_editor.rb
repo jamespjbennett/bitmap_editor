@@ -1,5 +1,6 @@
-class BitmapEditor
+require_relative 'bitmap_image.rb'
 
+class BitmapEditor
 
   def initialize(bitmap_image = BitmapImage.new)
     @bitmap_image = bitmap_image
@@ -14,11 +15,11 @@ class BitmapEditor
       line = line.chomp
       case line
       when new_bitmap_image_command
-          @bitmap_image.generate_grid(line)
+        @bitmap_image.generate_grid(line)
       when single_pixel_colour_command
-          puts "single pixel colour command"
+        puts "single pixel colour command"
       else
-          puts 'unrecognised command :('
+        puts 'unrecognised command :('
       end
     end
   end

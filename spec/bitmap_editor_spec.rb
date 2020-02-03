@@ -41,5 +41,7 @@ RSpec.describe "BitmapEditor" do
   it 'should correctly match against command for showing bitmap image'
   it 'should correctly match against command for clearing bitmap image'
 
-
+  describe 'running the file ' do
+    it 'should create a new bitmap image when the correct command is input'
+  end
 end
