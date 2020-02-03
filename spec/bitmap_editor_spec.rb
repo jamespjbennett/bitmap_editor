@@ -80,7 +80,12 @@ RSpec.describe "BitmapEditor" do
   end
 
 
-  it 'should correctly match against command for clearing bitmap image'
+  describe 'clear bitmap image command' do
+    it 'should correctly match against command for clearing bitmap image' do
+      valid_inputs = ["c", "C", "  c  "]
+      valid_inputs.each{|input| expect(input.match(@bitmap_editor.clear_command)).not_to be_nil}
+    end
+  end
 
 
   describe 'running the file reader' do
