@@ -25,7 +25,6 @@ RSpec.describe "BitmapImage" do
   describe 'grid generation' do
     context 'valid command' do
       before(:each) do
-        @bitmap_image = BitmapImage.new
         @bitmap_image.generate_grid("I 5 6")
         @grid = @bitmap_image.instance_variable_get(:@grid)
       end
@@ -56,7 +55,6 @@ RSpec.describe "BitmapImage" do
 
     context 'invalid command' do
       before(:each) do
-        @bitmap_image = BitmapImage.new
         @bitmap_image.generate_grid("I 251 251")
         @grid = @bitmap_image.instance_variable_get(:@grid)
       end
@@ -69,7 +67,6 @@ RSpec.describe "BitmapImage" do
 
   describe 'new colour dot' do
     before(:each) do
-      @bitmap_image = BitmapImage.new
       @bitmap_image.generate_grid("I 5 6")
     end
 
@@ -92,7 +89,6 @@ RSpec.describe "BitmapImage" do
 
   describe 'new vertical line' do
     before(:each) do
-      @bitmap_image = BitmapImage.new
       @bitmap_image.generate_grid("I 5 6")
     end
 
@@ -123,7 +119,6 @@ RSpec.describe "BitmapImage" do
 
   describe 'new horizontal line' do
     before(:each) do
-      @bitmap_image = BitmapImage.new
       @bitmap_image.generate_grid("I 5 6")
     end
 
@@ -141,13 +136,23 @@ RSpec.describe "BitmapImage" do
 
   describe 'show image' do
     it 'should print out the bitmap grid' do
-      bitmap_image = BitmapImage.new
-      bitmap_image.generate_grid("I 5 6")
-      bitmap_image.colour_single_pixel("L 1 3 A")
-      bitmap_image.draw_horizontal_line("H 3 5 2 Z")
-      bitmap_image.draw_vertical_line("V 2 3 6 W")
+      @bitmap_image.generate_grid("I 5 6")
+      @bitmap_image.colour_single_pixel("L 1 3 A")
+      @bitmap_image.draw_horizontal_line("H 3 5 2 Z")
+      @bitmap_image.draw_vertical_line("V 2 3 6 W")
       expected_output = "O O O O O\nO O Z Z Z\nA W O O O\nO W O O O\nO W O O O\nO W O O O\n"
-      expect { bitmap_image.display_grid }.to output(expected_output).to_stdout
+      expect { @bitmap_image.display_grid }.to output(expected_output).to_stdout
     end
   end
+
+  describe 'clear image' do
+    it 'should clear the image from the grid' do
+      @bitmap_image.generate_grid("I 5 6")
+      @bitmap_image.draw_horizontal_line("H 3 5 2 Z")
+      @bitmap_image.clear_grid
+      grid = @bitmap_image.instance_variable_get(:@grid)
+      expect(grid.flatten.uniq).to eq(["O"])
+    end
+  end
+
 end
