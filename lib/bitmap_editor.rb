@@ -40,6 +40,10 @@ class BitmapEditor
     /[hH]\s+\d+\s+\d+\s+\d+\s+[a-zA-Z]\s*\z/
   end
 
+  def show_image_command
+    /[sS]/
+  end
+
   def image_action?
     Regexp.union([single_pixel_colour_command, vertical_line_command, horizontal_line_command])
   end

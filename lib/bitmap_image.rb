@@ -29,6 +29,8 @@ class BitmapImage
     x_coordinates_valid && y_coordinates_valid
   end
 
+  
+
   def colour_single_pixel(command)
     int_values = command_integer_values(command)
     x_axis_coordinate = int_values[0] - 1
