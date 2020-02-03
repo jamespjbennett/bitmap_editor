@@ -16,7 +16,7 @@ class BitmapEditor
       when new_bitmap_image_command
         @grid = @bitmap_image.generate_grid(line)
       when single_pixel_colour_command
-        puts "single pixel colour command"
+        @bitmap_image.colour_single_pixel(line)
       else
         puts 'unrecognised command :('
       end
