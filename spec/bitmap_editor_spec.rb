@@ -71,11 +71,14 @@ RSpec.describe "BitmapEditor" do
 
 
   describe 'show bitmap image command' do
-    context 'valid regex' do
-      it 'should correctly match against command for showing bitmap image' do
-        valid_inputs = ["s", "S", "  s  "]
-        valid_inputs.each{|input| expect(input.match(@bitmap_editor.show_image_command)).not_to be_nil}
-      end
+    it 'should correctly match against command for showing bitmap image' do
+      valid_inputs = ["s", "S", "  s  "]
+      valid_inputs.each{|input| expect(input.match(@bitmap_editor.show_image_command)).not_to be_nil}
+    end
+
+    it 'should correctly identify showing bitmap command as invalid' do
+      invalid_inputs = ["sa", "s 1"]
+      invalid_inputs.each{|input| expect(input.match(@bitmap_editor.show_image_command)).to be_nil}
     end
   end
 
