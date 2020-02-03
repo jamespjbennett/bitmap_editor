@@ -37,6 +37,11 @@ class BitmapImage
   end
 
   def draw_vertical_line(command)
-    
+    int_values = command_integer_values(command)
+    x_axis_coordinate = int_values[0].to_i - 1
+    y_axis_coordinate_1 = int_values[1].to_i - 1
+    y_axis_coordinate_2 = int_values[2].to_i - 1
+    colour = command_string_values(command).last
+    @grid[y_axis_coordinate_1..y_axis_coordinate_2].each{|row| row[x_axis_coordinate] = colour}
   end
 end

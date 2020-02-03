@@ -102,7 +102,7 @@ RSpec.describe "BitmapImage" do
         @grid = @bitmap_image.instance_variable_get(:@grid)
       end
       it 'should draw a vertical line in the column that matches the command' do
-        expect(@grid.map{|row| row[1]}.count("Y")).to eq(4)
+        expect(@grid.map{|row| row[1]}.count("W")).to eq(4)
         expect(@grid.map{|row| row[1]}.count("O")).to eq(2)
       end
     end
