@@ -97,7 +97,7 @@ RSpec.describe "BitmapEditor" do
         remove_temp_file(file)
       end
 
-      it 'should create a new bitmap image when the correct set of commands are input' do
+      it 'should colour a dot when the input file provides the correct set of commands' do
         file = open_and_write_temp_file("i 5 6\nL 1 3 A")
         @bitmap_editor.run(file)
         grid = @bitmap_editor.instance_variable_get(:@grid)
@@ -112,7 +112,6 @@ RSpec.describe "BitmapEditor" do
         expect { @bitmap_editor.run(file) }.to output("No Grid created!\n").to_stdout
         expect { @bitmap_editor.run(file) }.not_to raise_error
         remove_temp_file(file)
-
       end
     end
   end
