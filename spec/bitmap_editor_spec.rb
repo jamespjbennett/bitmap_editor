@@ -85,6 +85,11 @@ RSpec.describe "BitmapEditor" do
       valid_inputs = ["c", "C", "  c  "]
       valid_inputs.each{|input| expect(input.match(@bitmap_editor.clear_command)).not_to be_nil}
     end
+
+    it 'should correctly identify clear command as invalid' do
+      invalid_inputs = ["ca", "c 1"]
+      invalid_inputs.each{|input| expect(input.match(@bitmap_editor.clear_command)).to be_nil}
+    end
   end
 
 
