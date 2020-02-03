@@ -1,4 +1,5 @@
 require_relative '../lib/bitmap_image'
+require 'pry'
 
 RSpec.describe "BitmapImage" do
 
@@ -74,14 +75,19 @@ RSpec.describe "BitmapImage" do
 
     context 'valid command' do
       it 'should successfully change the value of the specified coordinate to the specified colour' do
-        @bitmap_image.colour_single_pixel("L 1 3 A")        
+        @bitmap_image.colour_single_pixel("L 1 3 A")
         grid = @bitmap_image.instance_variable_get(:@grid)
         expect(grid[1][3]).to eq("A")
       end
 
     end
     context 'invalid command' do
-      it 'should prevent coloring if the coordinates are out of bounds'
+      it 'should prevent coloring if the x coordinate is out of bounds' do
+        binding.pry
+        @bitmap_image.colour_single_pixel("L 6 6 A")
+        grid = @bitmap_image.instance_variable_get(:@grid)
+        expect(grid[1][3]).to_not eq("A")
+      end
     end
   end
 end

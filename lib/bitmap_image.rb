@@ -3,7 +3,7 @@ class BitmapImage
   def initialize
     @rows = nil
     @columns = nil
-    @rows = nil
+    @grid = nil
   end
 
   def generate_grid(command)
@@ -23,9 +23,15 @@ class BitmapImage
     command.scan(/[a-zA-Z]/)
   end
 
+  def within_bounds?(coordinates)
+    (coordinates[0] <= @rows) || (coordinates[1] <= @columns)
+  end
+
   def colour_single_pixel(command)
-    x_axis_coordinate = command_integer_values(command)[0].to_i
-    y_axis_coordinate = command_integer_values(command)[1].to_i
+    int_values = command_integer_values(command)
+    x_axis_coordinate = int_values[0]
+    y_axis_coordinate = int_values[1]
+    return puts "Coordinates out of bounds" if !within_bounds?([x_axis_coordinate, y_axis_coordinate])
     colour = command_string_values(command).last
     @grid[x_axis_coordinate][y_axis_coordinate] = colour
   end
