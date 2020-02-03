@@ -131,6 +131,14 @@ RSpec.describe "BitmapImage" do
         expect(@grid[1]).to eq(["O", "O", "Z", "Z", "Z"])
       end
     end
+
+    context 'invalid command' do
+      it 'should not draw a line if the coordinates are out of bounds' do
+        @bitmap_image.draw_horizontal_line("H 3 6 2 Z")
+        grid = @bitmap_image.instance_variable_get(:@grid)
+        expect(grid.flatten.uniq).to eq(["O"])
+      end
+    end
   end
 
 

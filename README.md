@@ -13,7 +13,7 @@
 `rspec` to run all tests
 
 
-# TODO 
+# TODO
 
 - refactor the bitmap image x-y coordinate translations from command into own class to avoid repetition
-
+- further tests for specific sets of instructions in a generated file
