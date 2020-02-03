@@ -120,4 +120,22 @@ RSpec.describe "BitmapImage" do
       end
     end
   end
+
+  describe 'new vertical line' do
+    before(:each) do
+      @bitmap_image = BitmapImage.new
+      @bitmap_image.generate_grid("I 5 6")
+    end
+
+    context 'valid command' do
+      before(:each) do
+        @bitmap_image.draw_horizontal_line("H 3 5 2 Z")
+        @grid = @bitmap_image.instance_variable_get(:@grid)
+      end
+      it 'should draw a horitontal line in the column that matches the command' do
+        expect(@grid[1]).to eq(["O", "O", "Z", "Z", "Z"])
+      end
+    end
+  end
+
 end
