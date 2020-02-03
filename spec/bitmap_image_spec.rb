@@ -109,7 +109,12 @@ RSpec.describe "BitmapImage" do
 
     context 'invalid command' do
       it 'should prevent coloring if the x coordinate is out of bounds' do
-        @bitmap_image.draw_vertical_line("V 6 3 7 W")
+        @bitmap_image.draw_vertical_line("V 6 3 6 W")
+        grid = @bitmap_image.instance_variable_get(:@grid)
+        expect(grid.flatten.uniq).to eq(["O"])
+      end
+      it 'should prevent coloring if a y coordinate is out of bounds' do
+        @bitmap_image.draw_vertical_line("V 2 3 7 W")
         grid = @bitmap_image.instance_variable_get(:@grid)
         expect(grid.flatten.uniq).to eq(["O"])
       end
