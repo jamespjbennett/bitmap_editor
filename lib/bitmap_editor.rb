@@ -1,5 +1,12 @@
 class BitmapEditor
 
+
+  def initialize(bitmap_image = BitmapImage.new)
+    @bitmap_image = bitmap_image
+    @grid = nil
+  end
+
+
   def run(file)
     return puts "please provide correct file" if file.nil? || !File.exists?(file)
 
@@ -7,9 +14,9 @@ class BitmapEditor
       line = line.chomp
       case line
       when new_bitmap_image_command
-          puts "new bitmap image command"
-      when 'S'
-          puts "There is no image"
+          @bitmap_image.generate_grid(line)
+      when single_pixel_colour_command
+          puts "single pixel colour command"
       else
           puts 'unrecognised command :('
       end
