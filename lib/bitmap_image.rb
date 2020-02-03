@@ -11,10 +11,10 @@ class BitmapImage
     return puts "Grid must be less than ot equal to 250 * 250" if int_values.max > 250
     @rows = int_values[1]
     @columns = int_values[0]
-    @grid = Array.new(@rows) {Array.new(@columns) {'O'}}
+    create_clear_grid
   end
 
-  def clear_grid
+  def create_clear_grid
     @grid = Array.new(@rows) {Array.new(@columns) {'O'}}
   end
 

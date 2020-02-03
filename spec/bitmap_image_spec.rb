@@ -149,7 +149,7 @@ RSpec.describe "BitmapImage" do
     it 'should clear the image from the grid' do
       @bitmap_image.generate_grid("I 5 6")
       @bitmap_image.draw_horizontal_line("H 3 5 2 Z")
-      @bitmap_image.clear_grid
+      @bitmap_image.create_clear_grid
       grid = @bitmap_image.instance_variable_get(:@grid)
       expect(grid.flatten.uniq).to eq(["O"])
     end
