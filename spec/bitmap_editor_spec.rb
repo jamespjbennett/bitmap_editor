@@ -54,7 +54,22 @@ RSpec.describe "BitmapEditor" do
     end
   end
 
-  it 'should correctly match against command for horizontal line on bitmap image'
+  describe 'new horizontal line command regex matches' do
+    context 'valid regex' do
+      it 'should correctly match against command for horizontal line colouring' do
+        valid_inputs = ["H 3 5 2 Z", "h  13   200 4 D", "H 1 3 20 A   "]
+        valid_inputs.each{|input| expect(input.match(@bitmap_editor.horizontal_line_command)).not_to be_nil}
+      end
+    end
+    context 'invalid regex' do
+      it 'should not providde a match for invalid commands for horizontal line colouring' do
+        invalid_inputs = ["h 3 5 Z", "H5 5 2 A", "H 3 52 W", "HA 3 5 2 Z"]
+        invalid_inputs.each{|input| expect(input.match(@bitmap_editor.horizontal_line_command)).to be_nil}
+      end
+    end
+  end
+
+
   it 'should correctly match against command for showing bitmap image'
   it 'should correctly match against command for clearing bitmap image'
 
