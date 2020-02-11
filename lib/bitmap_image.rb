@@ -64,4 +64,12 @@ class BitmapImage
     colour = command_string_values(command).last
     (x_axis_coordinate_1..x_axis_coordinate_2).to_a.each{|coordinate| @grid[y_axis_coordinate][coordinate] = colour}
   end
+
+  def fill_colour(command)
+    int_values = command_integer_values(command)
+    x_axis_coordinate = int_values[0] - 1
+    y_axis_coordinate = int_values[1] - 1
+    colour = command_string_values(command).last
+    
+  end
 end
