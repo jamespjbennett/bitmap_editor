@@ -39,6 +39,17 @@ RSpec.describe "BitmapEditor" do
     end
   end
 
+
+  describe 'fill command' do
+    context 'valid regex' do
+      it 'should correctly match against command for filling in an area with a colour'
+    end
+    context 'invalid regex' do
+      it 'should not provide a  match for invaluid command for filling in an area with a colour'
+    end
+  end
+
+
   describe 'new vertical line command regex matches' do
     context 'valid regex' do
       it 'should correctly match against command for vertical line colouring' do
