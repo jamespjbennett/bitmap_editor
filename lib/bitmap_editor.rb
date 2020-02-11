@@ -52,6 +52,10 @@ class BitmapEditor
     /[hH]\s+\d+\s+\d+\s+\d+\s+[a-zA-Z]\s*\z/
   end
 
+  def fill_colour_command
+    /[fF]\s+\d+\s+\d+\s+[a-zA-Z]\s*\z/
+  end
+
   def show_image_command
     /[sS]\s*\z/
   end
