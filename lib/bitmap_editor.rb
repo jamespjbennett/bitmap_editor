@@ -65,7 +65,7 @@ class BitmapEditor
   end
 
   def image_action?
-    Regexp.union([single_pixel_colour_command, vertical_line_command, horizontal_line_command, show_image_command, clear_command])
+    Regexp.union([single_pixel_colour_command, vertical_line_command, horizontal_line_command, show_image_command, clear_command, fill_colour_command])
   end
 
 end

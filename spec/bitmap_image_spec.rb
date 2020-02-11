@@ -142,6 +142,19 @@ RSpec.describe "BitmapImage" do
   end
 
 
+  describe 'fill area' do
+    before(:each) do
+      @bitmap_image.generate_grid("I 5 6")
+    end
+
+    context 'valid command' do
+      it 'should successfully color the specified coordinates with the specified colour'
+    end
+    context 'invalid command' do
+
+    end
+  end
+
   describe 'show image' do
     it 'should print out the bitmap grid' do
       @bitmap_image.generate_grid("I 5 6")
