@@ -148,7 +148,12 @@ RSpec.describe "BitmapImage" do
     end
 
     context 'valid command' do
-      it 'should successfully color the specified coordinates with the specified colour'
+      it 'should fill the whole grid with the colour if there are no bounds' do
+        
+      end
+      it 'should fill the remaining coordinates if the grid is coloured but contains no full lines'
+      it 'should fill a bounded area with the colour if there is a full line partioning the grid'
+
     end
     context 'invalid command' do
 
