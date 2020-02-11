@@ -42,7 +42,10 @@ RSpec.describe "BitmapEditor" do
 
   describe 'fill command' do
     context 'valid regex' do
-      it 'should correctly match against command for filling in an area with a colour'
+      it 'should correctly match against command for filling in an area with a colour' do
+        valid_inputs = ["F 2 2 R", "f   2 2 r", "F 2 2 R   "]
+        valid_inputs.each{|input| expect(input.match(@bitmap_editor.fill_colour_command)).not_to be_nil}
+      end
     end
     context 'invalid regex' do
       it 'should not provide a  match for invaluid command for filling in an area with a colour'
