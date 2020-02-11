@@ -70,6 +70,6 @@ class BitmapImage
     x_axis_coordinate = int_values[0] - 1
     y_axis_coordinate = int_values[1] - 1
     colour = command_string_values(command).last
-    
+    @grid[y_axis_coordinate][x_axis_coordinate] = colour
   end
 end
