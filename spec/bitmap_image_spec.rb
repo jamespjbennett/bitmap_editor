@@ -153,6 +153,15 @@ RSpec.describe "BitmapImage" do
         grid = @bitmap_image.instance_variable_get(:@grid)
         expect(grid[1][1]).to eq("R")
       end
+
+      it 'should populate surrounding coorinates with the given colour' do
+        @bitmap_image.fill_colour("F 2 2 R")
+        grid = @bitmap_image.instance_variable_get(:@grid)
+        expect(grid[1][2]).to eq("R")
+        expect(grid[1][0]).to eq("R")
+      end
+
+
       it 'should fill the remaining coordinates if the grid is coloured but contains no full lines'
       it 'should fill a bounded area with the colour if there is a full line partioning the grid'
 
