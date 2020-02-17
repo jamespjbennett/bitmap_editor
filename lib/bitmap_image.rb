@@ -80,8 +80,9 @@ class BitmapImage
 
   def fill_colour_with_empty_surrounding(colour)
     next_fill_coordinate_to_populate = nil
-    @grid.each_with_index do |value, index|
+    @grid.each_with_index do |grid_row, grid_row_index|
       if value.index(colour)
+        horizontal_blank_space = check_for_surrounding_whitespace(grid_row, grid_row_index, "x")
         next_fill_coordinate_to_populate = [index, value.index(colour)]
         break
       end
@@ -89,5 +90,8 @@ class BitmapImage
     binding.pry
   end
 
+  def check_for_surrounding_whitespace(grid_row, grid_row_index, axis)
+    binding.pry
+  end
 
 end
