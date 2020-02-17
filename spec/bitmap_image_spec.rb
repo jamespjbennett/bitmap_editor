@@ -160,10 +160,11 @@ RSpec.describe "BitmapImage" do
         expect(@bitmap_image.next_fill_colour_with_empty_surrounding('R')).to eq([1, 1])
       end
       #
-      # it 'should fill the whole area if no blocking lines are present' do
-      #   @bitmap_image.fill_colour("F 2 2 R")
-      #   expect()
-      # end
+      it 'should fill the whole area if no blocking lines are present' do
+        @bitmap_image.fill_colour("F 2 2 R")
+        grid = @bitmap_image.instance_variable_get(:@grid)
+        expect(grid.flatten.uniq).to eq(["R"])
+      end
       #
       # it 'should fill a bounded area with the colour if there is a full line partioning the grid' do
       #   @bitmap_image.draw_vertical_line("V 3 1 6 W")
