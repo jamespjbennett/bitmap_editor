@@ -123,42 +123,34 @@ class BitmapImage
 
 
   def fill_surrounding_area(coordinate, colour)
-    row_to_target = @grid[coordinate[0]]
     # horizontal
+    row_to_target = @grid[coordinate[0]]
     index_to_target = coordinate[1]
-    until ![colour, "O"].include?(row_to_target[index_to_target])
-      row_to_target[index_to_target] = colour
-      index_to_target += 1
-    end
-
+    loop_and_fill_specific_row_or_column(row_to_target, index_to_target, colour)
     # reverse horizontal
     reversed_row_to_target = row_to_target.reverse
     reversed_index_to_target = @columns -  coordinate[1] - 1
-    until ![colour, "O"].include?(reversed_row_to_target[reversed_index_to_target])
-      reversed_row_to_target[reversed_index_to_target] = colour
-      reversed_index_to_target += 1
-    end
+    loop_and_fill_specific_row_or_column(reversed_row_to_target, reversed_index_to_target, colour)
     @grid[coordinate[0]] = reversed_row_to_target.reverse
 
     # VERTICAL
     transposed_grid = @grid.transpose
-
     column_to_target = @grid.transpose[coordinate[1]]
     index_to_target = coordinate[0]
-    until ![colour, "O"].include?(column_to_target[index_to_target])
-      column_to_target[index_to_target] = colour
-      index_to_target += 1
-    end
-
+    loop_and_fill_specific_row_or_column(column_to_target, index_to_target, colour)
     # reverse vertical
     reversed_column_to_target = column_to_target.reverse
     reversed_index_to_target = @rows -  coordinate[0] - 1
-    until ![colour, "O"].include?(reversed_column_to_target[reversed_index_to_target])
-      reversed_column_to_target[reversed_index_to_target] = colour
-      reversed_index_to_target += 1
-    end
-
+    loop_and_fill_specific_row_or_column(reversed_column_to_target, reversed_index_to_target, colour)
     updated_grid_column = reversed_column_to_target.reverse
     @grid.each_with_index{|row, index| row[coordinate[1]] = updated_grid_column[index]}
+  end
+
+
+  def loop_and_fill_specific_row_or_column(column_or_row, index, colour)
+    until ![colour, "O"].include?(column_or_row[index])
+      column_or_row[index] = colour
+      index += 1
+    end
   end
 end
