@@ -75,8 +75,12 @@ class BitmapImage
     @grid[y_axis_coordinate][x_axis_coordinate] = colour
     next_fill_colour_coordinate = next_fill_colour_with_empty_surrounding(colour)
     if next_fill_colour_coordinate
-      fill_surrounding_area(next_fill_colour_coordinate, colour)
+      until !next_fill_colour_coordinate
+        fill_surrounding_area(next_fill_colour_coordinate, colour)
+        next_fill_colour_coordinate = next_fill_colour_with_empty_surrounding(colour)
+      end
     end
+    binding.pry
   end
 
   def next_fill_colour_with_empty_surrounding(colour)
@@ -87,8 +91,8 @@ class BitmapImage
         vertical_blank_space = check_for_surrounding_whitespace(grid_row, grid_row_index, grid_row.index(colour), "y")
         if horizontal_blank_space || vertical_blank_space
           next_fill_coordinate_to_populate = [grid_row_index, grid_row.index(colour)]
+          break
         end
-        break
       end
     end
     next_fill_coordinate_to_populate
