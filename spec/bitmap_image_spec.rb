@@ -159,18 +159,28 @@ RSpec.describe "BitmapImage" do
         @bitmap_image.colour_single_pixel("L 2 2 R")
         expect(@bitmap_image.next_fill_colour_with_empty_surrounding('R')).to eq([1, 1])
       end
-      #
+
       it 'should fill the whole area if no blocking lines are present' do
         @bitmap_image.fill_colour("F 2 2 R")
         grid = @bitmap_image.instance_variable_get(:@grid)
         expect(grid.flatten.uniq).to eq(["R"])
       end
-      #
-      # it 'should fill a bounded area with the colour if there is a full line partioning the grid' do
-      #   @bitmap_image.draw_vertical_line("V 3 1 6 W")
-      #   @bitmap_image.fill_colour("F 2 2 R")
-      #   expect()
-      # end
+
+      it 'should fill a bounded area with the colour if there is a full vertical line partioning the grid' do
+        @bitmap_image.draw_vertical_line("V 3 1 6 W")
+        @bitmap_image.fill_colour("F 2 2 R")
+        grid = @bitmap_image.instance_variable_get(:@grid)
+        expect(grid.transpose[0..1].flatten.uniq).to eq(["R"])
+      end
+
+      it 'should fill a bounded area with the colour if there is a full horizontal line partioning the grid' do
+        @bitmap_image.draw_horizontal_line("H 1 5 3 Z")
+        @bitmap_image.fill_colour("F 1 2 R")
+        grid = @bitmap_image.instance_variable_get(:@grid)
+        expect(grid[0..1].flatten.uniq).to eq(["R"])
+
+        # expect(grid.transpose[0..1].flatten.uniq).to eq(["R"])
+      end
 
     end
     context 'invalid command' do
