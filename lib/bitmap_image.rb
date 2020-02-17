@@ -80,7 +80,7 @@ class BitmapImage
         next_fill_colour_coordinate = next_fill_colour_with_empty_surrounding(colour)
       end
     end
-    binding.pry
+    # binding.pry
   end
 
   def next_fill_colour_with_empty_surrounding(colour)
