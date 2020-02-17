@@ -73,25 +73,41 @@ class BitmapImage
     y_axis_coordinate = int_values[1] - 1
     colour = command_string_values(command).last
     @grid[y_axis_coordinate][x_axis_coordinate] = colour
-    if fill_colour_with_empty_surrounding(colour)
-
+    next_fill_colour_coordinate = fill_colour_with_empty_surrounding(colour)
+    if next_fill_colour_coordinate
+      binding.pry
     end
   end
 
   def fill_colour_with_empty_surrounding(colour)
     next_fill_coordinate_to_populate = nil
     @grid.each_with_index do |grid_row, grid_row_index|
-      if value.index(colour)
-        horizontal_blank_space = check_for_surrounding_whitespace(grid_row, grid_row_index, "x")
-        next_fill_coordinate_to_populate = [index, value.index(colour)]
+      if grid_row.index(colour)
+        horizontal_blank_space = check_for_surrounding_whitespace(grid_row, grid_row_index, grid_row.index(colour), "x")
+        vertical_blank_space = check_for_surrounding_whitespace(grid_row, grid_row_index, grid_row.index(colour), "y")
+        if horizontal_blank_space || vertical_blank_space
+          next_fill_coordinate_to_populate = [grid_row_index, grid_row.index(colour)]
+        end
         break
       end
     end
-    binding.pry
+    next_fill_coordinate_to_populate
   end
 
-  def check_for_surrounding_whitespace(grid_row, grid_row_index, axis)
-    binding.pry
+  def check_for_surrounding_whitespace(grid_row, grid_row_index, grid_column_index, axis)
+    if axis == "x"
+      axis_increment = (grid_column_index + 1 <= @columns-1) ? grid_column_index + 1 : nil
+      axis_decrement = (grid_column_index - 1 >= 0) ? grid_column_index - 1 : nil
+      values_to_compare = [axis_increment, axis_decrement].compact
+      whitespace_matches = values_to_compare.map{|index_value| grid_row[index_value] == "O"}
+    else
+      axis_increment = (grid_row_index + 1 <= @rows-1) ? grid_row_index + 1 : nil
+      axis_decrement = (grid_row_index - 1 >= 0) ? grid_row_index - 1 : nil
+      values_to_compare = [axis_increment, axis_decrement].compact
+      whitespace_matches = values_to_compare.compact.map{|row|  @grid[row][grid_column_index] == "O"}
+    end
+
+    whitespace_matches.index(true)
   end
 
 end
