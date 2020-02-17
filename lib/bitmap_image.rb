@@ -87,10 +87,10 @@ class BitmapImage
     next_fill_coordinate_to_populate = nil
     @grid.each_with_index do |grid_row, grid_row_index|
       if grid_row.index(colour)
-        horizontal_blank_space = check_for_surrounding_whitespace(grid_row, grid_row_index, grid_row.index(colour), "x")
-        vertical_blank_space = check_for_surrounding_whitespace(grid_row, grid_row_index, grid_row.index(colour), "y")
+        horizontal_blank_space = check_for_surrounding_whitespace(grid_row, grid_row_index, grid_row.rindex(colour), "x")
+        vertical_blank_space = check_for_surrounding_whitespace(grid_row, grid_row_index, grid_row.rindex(colour), "y")
         if horizontal_blank_space || vertical_blank_space
-          next_fill_coordinate_to_populate = [grid_row_index, grid_row.index(colour)]
+          next_fill_coordinate_to_populate = [grid_row_index, grid_row.rindex(colour)]
           break
         end
       end
