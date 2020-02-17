@@ -178,8 +178,18 @@ RSpec.describe "BitmapImage" do
         @bitmap_image.fill_colour("F 1 2 R")
         grid = @bitmap_image.instance_variable_get(:@grid)
         expect(grid[0..1].flatten.uniq).to eq(["R"])
+      end
 
-        # expect(grid.transpose[0..1].flatten.uniq).to eq(["R"])
+      it 'should fill in colour within a square of surrounding coordinates' do
+        @bitmap_image.draw_horizontal_line("H 1 5 1 Z")
+        @bitmap_image.draw_horizontal_line("H 1 5 5 Z")
+        @bitmap_image.draw_vertical_line("V 1 2 4 Z")
+        @bitmap_image.draw_vertical_line("V 5 2 4 Z")
+        @bitmap_image.fill_colour("F 3 3 R")
+        grid = @bitmap_image.instance_variable_get(:@grid)
+        expect(grid[1][1..3].flatten.uniq).to eq(["R"])
+        expect(grid[2][1..3].flatten.uniq).to eq(["R"])
+        expect(grid[3][1..3].flatten.uniq).to eq(["R"])
       end
 
     end

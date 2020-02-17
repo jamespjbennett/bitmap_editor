@@ -80,17 +80,17 @@ class BitmapImage
         next_fill_colour_coordinate = next_fill_colour_with_empty_surrounding(colour)
       end
     end
-    # binding.pry
   end
 
   def next_fill_colour_with_empty_surrounding(colour)
     next_fill_coordinate_to_populate = nil
     @grid.each_with_index do |grid_row, grid_row_index|
       if grid_row.index(colour)
-        horizontal_blank_space = check_for_surrounding_whitespace(grid_row, grid_row_index, grid_row.rindex(colour), "x")
-        vertical_blank_space = check_for_surrounding_whitespace(grid_row, grid_row_index, grid_row.rindex(colour), "y")
-        if horizontal_blank_space || vertical_blank_space
-          next_fill_coordinate_to_populate = [grid_row_index, grid_row.rindex(colour)]
+        horizontal_blank_space = check_for_surrounding_whitespace(grid_row, grid_row_index, "x", colour)
+        vertical_blank_space = check_for_surrounding_whitespace(grid_row, grid_row_index, "y", colour)
+        if horizontal_blank_space.any? || vertical_blank_space.any?
+          first_match =  (vertical_blank_space + horizontal_blank_space)[0]
+          next_fill_coordinate_to_populate = [grid_row_index, first_match]
           break
         end
       end
@@ -98,20 +98,27 @@ class BitmapImage
     next_fill_coordinate_to_populate
   end
 
-  def check_for_surrounding_whitespace(grid_row, grid_row_index, grid_column_index, axis)
+  def check_for_surrounding_whitespace(grid_row, grid_row_index, axis, colour)
     if axis == "x"
-      axis_increment = (grid_column_index + 1 <= @columns-1) ? grid_column_index + 1 : nil
-      axis_decrement = (grid_column_index - 1 >= 0) ? grid_column_index - 1 : nil
-      values_to_compare = [axis_increment, axis_decrement].compact
-      whitespace_matches = values_to_compare.map{|index_value| grid_row[index_value] == "O"}
+      whitespace_matches = grid_row.each_with_index.select{|value, index| horizontal_match(value, grid_row, index, colour)}
     else
-      axis_increment = (grid_row_index + 1 <= @rows-1) ? grid_row_index + 1 : nil
-      axis_decrement = (grid_row_index - 1 >= 0) ? grid_row_index - 1 : nil
-      values_to_compare = [axis_increment, axis_decrement].compact
-      whitespace_matches = values_to_compare.compact.map{|row|  @grid[row][grid_column_index] == "O"}
+      whitespace_matches = grid_row.each_with_index.select{|value, index|  vertical_match(value, colour, grid_row_index, index)}
     end
+    whitespace_matches.map{|match| match[1]}
+  end
 
-    whitespace_matches.index(true)
+  def horizontal_match(value, grid_row, index, colour)
+    value_colour_match = value == colour
+    horizontal_match_below = ( (index-1) >= 0 ) ? grid_row[index-1] == "O" : false
+    horizontal_match_above = grid_row[index+1] == "O"
+    value_colour_match && (horizontal_match_below || horizontal_match_above)
+  end
+
+  def vertical_match(value,colour, grid_row_index, index)
+    value_colour_match = value == colour
+    vertical_match_below = @grid[grid_row_index + 1] ? @grid[grid_row_index + 1][index] == "O" : false
+    vertical_match_above = ((grid_row_index  - 1) >= 0) ? @grid[grid_row_index - 1][index] == "O" : false
+    value_colour_match && (vertical_match_below || vertical_match_above)
   end
 
 
