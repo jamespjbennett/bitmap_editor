@@ -1,3 +1,5 @@
+require 'pry'
+
 class BitmapImage
 
   def initialize
@@ -72,4 +74,6 @@ class BitmapImage
     colour = command_string_values(command).last
     @grid[y_axis_coordinate][x_axis_coordinate] = colour
   end
+
+
 end
