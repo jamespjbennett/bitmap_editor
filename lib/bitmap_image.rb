@@ -73,13 +73,13 @@ class BitmapImage
     y_axis_coordinate = int_values[1] - 1
     colour = command_string_values(command).last
     @grid[y_axis_coordinate][x_axis_coordinate] = colour
-    next_fill_colour_coordinate = fill_colour_with_empty_surrounding(colour)
+    next_fill_colour_coordinate = next_fill_colour_with_empty_surrounding(colour)
     if next_fill_colour_coordinate
-      binding.pry
+      fill_surrounding_area(next_fill_colour_coordinate, colour)
     end
   end
 
-  def fill_colour_with_empty_surrounding(colour)
+  def next_fill_colour_with_empty_surrounding(colour)
     next_fill_coordinate_to_populate = nil
     @grid.each_with_index do |grid_row, grid_row_index|
       if grid_row.index(colour)
@@ -110,4 +110,22 @@ class BitmapImage
     whitespace_matches.index(true)
   end
 
+
+  def fill_surrounding_area(coordinate, colour)
+    row_to_target = @grid[coordinate[0]]
+    # horizontal
+    index_to_target = coordinate[1]
+    until ![colour, "O"].include?(row_to_target[index_to_target])
+      row_to_target[index_to_target] = colour
+      index_to_target += 1
+    end
+
+    reversed_row_to_target = row_to_target.reverse
+    reversed_index_to_target = @columns -  coordinate[1] - 1
+    until ![colour, "O"].include?(reversed_row_to_target[reversed_index_to_target])
+      reversed_row_to_target[reversed_index_to_target] = colour
+      reversed_index_to_target += 1
+    end
+    @grid[coordinate[0]] = = reversed_row_to_target.reverse
+  end
 end

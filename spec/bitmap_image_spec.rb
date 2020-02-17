@@ -154,8 +154,14 @@ RSpec.describe "BitmapImage" do
         expect(grid[1][1]).to eq("R")
       end
 
-      it 'should fill the remaining coordinates if the grid is coloured but contains no full lines' do
+      it 'should find the next coordinat that has surrounding whitespace to fill ' do
+        @bitmap_image.draw_vertical_line("V 3 1 6 W")
+        @bitmap_image.fill_colour("F 2 2 R")
+        expect(@bitmap_image.fill_colour_with_empty_surrounding('R')).to eq([1, 1])
       end
+
+      # it 'should fill the remaining coordinates if the grid is coloured but contains no full lines' do
+      # end
       it 'should fill a bounded area with the colour if there is a full line partioning the grid' do
         @bitmap_image.draw_vertical_line("V 3 1 6 W")
         @bitmap_image.fill_colour("F 2 2 R")
