@@ -120,12 +120,34 @@ class BitmapImage
       index_to_target += 1
     end
 
+    # reverse horizontal
     reversed_row_to_target = row_to_target.reverse
     reversed_index_to_target = @columns -  coordinate[1] - 1
     until ![colour, "O"].include?(reversed_row_to_target[reversed_index_to_target])
       reversed_row_to_target[reversed_index_to_target] = colour
       reversed_index_to_target += 1
     end
-    @grid[coordinate[0]] = = reversed_row_to_target.reverse
+    @grid[coordinate[0]] = reversed_row_to_target.reverse
+
+    # VERTICAL
+    transposed_grid = @grid.transpose
+
+    column_to_target = @grid.transpose[coordinate[1]]
+    index_to_target = coordinate[0]
+    until ![colour, "O"].include?(column_to_target[index_to_target])
+      column_to_target[index_to_target] = colour
+      index_to_target += 1
+    end
+
+    # reverse vertical
+    reversed_column_to_target = column_to_target.reverse
+    reversed_index_to_target = @rows -  coordinate[0] - 1
+    until ![colour, "O"].include?(reversed_column_to_target[reversed_index_to_target])
+      reversed_column_to_target[reversed_index_to_target] = colour
+      reversed_index_to_target += 1
+    end
+
+    updated_grid_column = reversed_column_to_target.reverse
+    @grid.each_with_index{|row, index| row[coordinate[1]] = updated_grid_column[index]}
   end
 end
