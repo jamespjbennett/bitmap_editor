@@ -73,6 +73,20 @@ class BitmapImage
     y_axis_coordinate = int_values[1] - 1
     colour = command_string_values(command).last
     @grid[y_axis_coordinate][x_axis_coordinate] = colour
+    if fill_colour_with_empty_surrounding(colour)
+
+    end
+  end
+
+  def fill_colour_with_empty_surrounding(colour)
+    next_fill_coordinate_to_populate = nil
+    @grid.each_with_index do |value, index|
+      if value.index(colour)
+        next_fill_coordinate_to_populate = [index, value.index(colour)]
+        break
+      end
+    end
+    binding.pry
   end
 
 
